@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, Col,ProgressBar } from 'react-bootstrap';
 
 // This component renders a box with a random background color
 // It will change the color each x ms that will be passed by prop
@@ -6,7 +7,7 @@ import React from 'react';
 // colorChangeInterval - number - positive integer for the ms of the interval
 // State
 // color - string - the css color of the bg (e.g. "#FF0000")
-class RandomBoxColor extends React.Component {
+class ProgressBars extends React.Component {
 
     constructor(props) {
         super(props);
@@ -65,14 +66,26 @@ class RandomBoxColor extends React.Component {
 
     render() {
         const { color } = this.state;
-
         // converting data to presentation
         // convert the color state to a style object 
         const myStyle = { backgroundColor: color }
         return (
-            <div style={myStyle} className={this.state.naeOfClass}></div>
+            <div>
+                <Col>
+                    <Card style={{ width: '18rem' }}>
+                        
+                        <Card.Body>
+                            <Card.Title>General</Card.Title>
+                            <Card.Text><div style={myStyle} className="circle"></div></Card.Text>
+                            <ProgressBar animated now={45} />
+                        </Card.Body>
+                    </Card>
+                </Col>
+                
+            </div>
         )
     }
 }
 
-export default RandomBoxColor;
+
+export default ProgressBars;
