@@ -23,3 +23,43 @@ h1, p {
   height: 200px;
   border-radius: 50%;
 }
+
+.circle_p {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+#my_progress {
+  border: solid black;
+}
+
+.progressRow {
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+.span_p{
+  align-content: center;
+  
+  margin-left: 40%;
+}
+
+.cardBody{
+  justify-content: center;
+  background-color: grey;
+  height: 250px;
+}
+
+.cardTitle{
+  
+  height: 40px;
+  background-color: blue;
+  padding-left: 30%;
+  
+}

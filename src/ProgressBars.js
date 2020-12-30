@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col,ProgressBar } from 'react-bootstrap';
+import { Card, Col, ProgressBar, Row } from 'react-bootstrap';
 
 // This component renders a box with a random background color
 // It will change the color each x ms that will be passed by prop
@@ -11,77 +11,103 @@ class ProgressBars extends React.Component {
 
     constructor(props) {
         super(props);
-        this.count = 1;
+
         this.state = {
-            color: this.getRandomColor(),
-            naeOfClass: "box",
+            now1: 0,
+            now2: 0,
+            now3: 0,
         }
 
     }
 
     componentDidMount() {
         this.myInterval = setInterval(() => {
-            const newColor = this.getRandomColor();
-            console.log("updating new color to: " + newColor);
-            this.setState({ color: newColor });
-        }, 500);
+            this.setState({
+                now1: Math.floor(Math.random() * 101),
+                now2: Math.floor(Math.random() * 101),
+                now3: Math.floor(Math.random() * 101),
+            });
+        }, 1000);
+        
+        
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // Check that the colorChangeInterval was changed
-        if (this.count < 10) {
-            // 1) Stop the current interval
-            clearInterval(this.myInterval);
-
-            // 2) create a new interval with the new time
-            this.myInterval = setInterval(() => {
-                const newColor = this.getRandomColor();
-                console.log("updating new color to: " + newColor);
-                this.setState({ color: newColor });
-            }, 500);
-            this.count = this.count + 1;
-        }
-        else {
-            this.componentWillUnmount();
-        }
-        if (this.count >= 5) {
-            this.state.naeOfClass = "circle";
-        }
-    }
-
-    componentWillUnmount() {
+        // 1) Stop the current interval
         clearInterval(this.myInterval);
+
+        // 2) create a new interval with the new time
+        this.myInterval = setInterval(() => {
+            
+            if (this.state.now1 < 100) {
+                this.setState({
+                    now1: this.state.now1 + Math.floor(Math.random() * 5) + 1
+                });
+            }
+            if (this.state.now2 < 100) {
+                this.setState({
+                    now2: this.state.now2 + Math.floor(Math.random() * 5) + 1
+                });
+    
+            }
+            if (this.state.now3 < 100) {
+                this.setState({
+                    now3: this.state.now3 + Math.floor(Math.random() * 5) + 1
+                });
+            }
+        }, 1000);
+        
     }
 
-    getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-            const index = Math.floor(Math.random() * 16);
-            color += letters[index];
-        }
-
-        return color;
-    }
 
     render() {
+        
         const { color } = this.state;
         // converting data to presentation
         // convert the color state to a style object 
         const myStyle = { backgroundColor: color }
+        const style = { marginTop: 50 }
+        const now1 = this.state.now1;
+        const now2 = this.state.now2;
+        const now3 = this.state.now3;
+
         return (
             <div>
-                <Col>
-                    <Card style={{ width: '18rem' }}>
-                        
-                        <Card.Body>
-                            <Card.Title>General</Card.Title>
-                            <Card.Text><div style={myStyle} className="circle"></div></Card.Text>
-                            <ProgressBar animated now={45} />
-                        </Card.Body>
-                    </Card>
-                </Col>
-                
+                <Row className="progressRow">
+                    <Col>
+                        <Card className="cardBody" style={{ width: '12rem' }}>
+                            <Card.Body>
+                                <Card.Title className="cardTitle">General</Card.Title>
+                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now1}%`}</span></div>
+                                <div style={{ width: '12rem' }}>
+                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now1}%`} />
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="cardBody" style={{ width: '12rem' }}>
+                            <Card.Body >
+                                <Card.Title className="cardTitle">Uploading</Card.Title>
+                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now2}%`}</span></div>
+                                <div style={{ width: '12rem' }}>
+                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now2}%`} />
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="cardBody" style={{ width: '12rem' }}>
+                            <Card.Body>
+                                <Card.Title className="cardTitle">Tasks Status</Card.Title>
+                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now3}%`}</span></div>
+                                <div style={{ width: '12rem' }}>
+                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now3}%`} />
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         )
     }
