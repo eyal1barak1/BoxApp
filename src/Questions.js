@@ -3,79 +3,47 @@ import { useState, useEffect } from 'react'
 
 function Questions() {
 
-    const [selectedOption1, setselectedOption1] = useState(false);
-    const [selectedOption2, setselectedOption2] = useState(false);
-    const [selectedOption3, setselectedOption3] = useState(false);
+    const [selectedOption1, setselectedOption1] = useState("Yes");
+    const [selectedOption2, setselectedOption2] = useState("Yes");
+    const [selectedOption3, setselectedOption3] = useState("Yes");
 
-    function onValueChange(event) {
-        const checked = event.target.value;
-        if (checked === "No") {
-            setselectedOption1(true);
-            setselectedOption2(true);
-            setselectedOption3(true);
-        }
-        else {
-            setselectedOption1(false);
-        }
+
+    function RadioChangeOption1(e) {
+        setselectedOption1(e.target.value)
+    }
+    function RadioChangeOption2(e) {
+        setselectedOption2(e.target.value)
+    }
+    function RadioChangeOption3(e) {
+        setselectedOption3(e.target.value)
     }
 
-    function onValueChange2(event) {
-        const checked = event.target.value;
-        if (checked !== "No") {
-
-            setselectedOption2(false);
-
+    useEffect(() => {
+        if (selectedOption1 == "No") {
+            setselectedOption2("No");
+            setselectedOption3("No");
         }
-        else {
-            setselectedOption2(true);
-        }
-    }
-    function onValueChange3(event) {
-        const checked = event.target.value;
-        if (checked !== "No") {
 
-            setselectedOption3(false);
 
-        }
-        else {
-            setselectedOption2(true);
-        }
-    }
+    }, [selectedOption1])
 
 
     return (
         <div>
-            <form  >
-                <fieldset id="group1" value="Yes" onChange={e => onValueChange(e)}>
-                    <p>Have you Programmed before?</p>
-                    <input type="radio" id="Yes" name="group1" value="Yes"></input>
-                    <label for="Yes">Yes</label>
-                    <input type="radio" id="No" name="group1" value="No" checked={selectedOption1}></input>
-                    <label for="No">No</label>
-                    <input type="radio" id="Partial" name="group1" value="Partial"></input>
-                    <label for="Partial">Partial</label>
-                </fieldset>
+            <p>Have you Programmed before?</p>
+            <input type="radio" checked={selectedOption1 === "Yes"} name="group1" value="Yes" onChange={RadioChangeOption1} />Yes
+            <input type="radio" checked={selectedOption1 === "No"}name="group1" value="No" onChange={RadioChangeOption1} />No
+            <input type="radio" checked={selectedOption1 === "Partial"}name="group1" value="Partial" onChange={RadioChangeOption1} />Partial
 
-                <fieldset id="group2" onChange={e => onValueChange2(e)}>
-                    <p>Have you Programmed in Java?</p>
-                    <input type="radio" id="Yes" name="group2" value="Yes"></input>
-                    <label for="Yes">Yes</label>
-                    <input type="radio" id="No" name="group2" value="No" checked={selectedOption2}></input>
-                    <label for="No">No</label>
-                    <input type="radio" id="Partial" name="group2" value="Partial"></input>
-                    <label for="Partial">Partial</label>
-                </fieldset>
+            <p>Have you Programmed in Java?</p>
+            <input type="radio" checked={selectedOption2 === "Yes"} name="group2" value="Yes" onChange={RadioChangeOption2} />Yes
+            <input type="radio" checked={selectedOption2 === "No"} name="group2" value="No" onChange={RadioChangeOption2} />No
+            <input type="radio" checked={selectedOption2 === "Partial"} name="group2" value="Partial" onChange={RadioChangeOption2} />Partial
 
-                <fieldset id="group3" onChange={e => onValueChange3(e)}>
-                    <p>Have you Programmed in Python?</p>
-                    <input type="radio" id="Yes" name="group3" value="Yes"></input>
-                    <label for="Yes">Yes</label>
-                    <input type="radio" id="No" name="group3" value="No" checked={selectedOption3}></input>
-                    <label for="No">No</label>
-                    <input type="radio" id="Partial" name="group3" value="Partial"></input>
-                    <label for="Partial">Partial</label>
-                </fieldset>
-            </form>
+            <p>Have you Programmed in Python?</p>
+            <input type="radio" checked={selectedOption3 === "Yes"} name="group3" value="Yes" onChange={RadioChangeOption3} />Yes
+            <input type="radio" checked={selectedOption3 === "No"} name="group3" value="No" onChange={RadioChangeOption3} />No
+            <input type="radio" checked={selectedOption3 === "Partial"} name="group3" value="Partial" onChange={RadioChangeOption3} />Partial
         </div>
     )
 
