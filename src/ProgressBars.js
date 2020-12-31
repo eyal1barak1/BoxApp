@@ -62,10 +62,7 @@ class ProgressBars extends React.Component {
 
     render() {
         
-        const { color } = this.state;
-        // converting data to presentation
-        // convert the color state to a style object 
-        const myStyle = { backgroundColor: color }
+        
         const style = { marginTop: 50 }
         const now1 = this.state.now1;
         const now2 = this.state.now2;
@@ -78,7 +75,7 @@ class ProgressBars extends React.Component {
                         <Card className="cardBody" style={{ width: '12rem' }}>
                             <Card.Body>
                                 <Card.Title className="cardTitle">General</Card.Title>
-                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now1}%`}</span></div>
+                                <div className="circle_p"><span className="span_p">{`${now1}%`}</span></div>
                                 <div style={{ width: '12rem' }}>
                                     <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now1}%`} />
                                 </div>
@@ -89,7 +86,7 @@ class ProgressBars extends React.Component {
                         <Card className="cardBody" style={{ width: '12rem' }}>
                             <Card.Body >
                                 <Card.Title className="cardTitle">Uploading</Card.Title>
-                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now2}%`}</span></div>
+                                <div className="circle_p"><span className="span_p">{`${now2}%`}</span></div>
                                 <div style={{ width: '12rem' }}>
                                     <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now2}%`} />
                                 </div>
@@ -100,7 +97,7 @@ class ProgressBars extends React.Component {
                         <Card className="cardBody" style={{ width: '12rem' }}>
                             <Card.Body>
                                 <Card.Title className="cardTitle">Tasks Status</Card.Title>
-                                <div style={{ backgroundColor: "blue" }} className="circle_p"><span className="span_p">{`${now3}%`}</span></div>
+                                <div className="circle_p"><span className="span_p">{`${now3}%`}</span></div>
                                 <div style={{ width: '12rem' }}>
                                     <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now3}%`} />
                                 </div>
