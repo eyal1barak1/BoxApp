@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Col, ProgressBar, Row } from 'react-bootstrap';
+import ProgressCol from './ProgressCol';
 
 // This component renders a box with a random background color
 // It will change the color each x ms that will be passed by prop
@@ -71,39 +72,9 @@ class ProgressBars extends React.Component {
         return (
             <div>
                 <Row className="progressRow">
-                    <Col>
-                        <Card className="cardBody" style={{ width: '12rem' }}>
-                            <Card.Body>
-                                <Card.Title className="cardTitle">General</Card.Title>
-                                <div className="circle_p"><span className="span_p">{`${now1}%`}</span></div>
-                                <div style={{ width: '12rem' }}>
-                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now1}%`} />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="cardBody" style={{ width: '12rem' }}>
-                            <Card.Body >
-                                <Card.Title className="cardTitle">Uploading</Card.Title>
-                                <div className="circle_p"><span className="span_p">{`${now2}%`}</span></div>
-                                <div style={{ width: '12rem' }}>
-                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now2}%`} />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="cardBody" style={{ width: '12rem' }}>
-                            <Card.Body>
-                                <Card.Title className="cardTitle">Tasks Status</Card.Title>
-                                <div className="circle_p"><span className="span_p">{`${now3}%`}</span></div>
-                                <div style={{ width: '12rem' }}>
-                                    <ProgressBar id="my_progress" striped variant="success" now={40} style={style} label={`${now3}%`} />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                   <ProgressCol titel="General" now={now1} style={style}/>
+                   <ProgressCol titel="Uploading" now={now2} style={style}/>
+                   <ProgressCol titel="Tasks Status" now={now3} style={style}/>
                 </Row>
             </div>
         )
